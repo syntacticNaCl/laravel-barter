@@ -40,11 +40,15 @@
                                             <h5 class="card-title">{{ $item->name }}</h5>
                                             <p class="card-text">{{ $item->description }}</p>
                                             <p class="card-text">{{ $item->creator->name }}</p>
+                                            <p class="float-left" style="margin-top: 5px;">Quantity {{ $item->quantity }}</p>
                                         </div>
                                         <div class="card-footer">
-                                            <p class="float-left" style="margin-top: 5px;">Available {{ $item->quantity }}</p>
                                             {{ Form::open(array('url' => 'item/' . $item->id . '/claim')) }}
+                                            {{--<p class="float-left" style="margin-top: 5px;">Available {{ $item->isAvailable()}}</p>--}}
+                                            <p class="float-left" style="margin-top: 5px;">{{ $item->availableCount() }} Left</p>
+                                            @if($item->isAvailable())
                                             <button type="submit" class="btn btn-primary float-right">Claim</button>
+                                            @endif
                                             {{ Form::close() }}
                                         </div>
                                     </div>
