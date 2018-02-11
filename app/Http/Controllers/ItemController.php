@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Item;
 use App\Event;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
+
 class ItemController extends Controller
 {
 
@@ -63,6 +65,13 @@ class ItemController extends Controller
         $item->name = $request->input('name');
         $item->quantity = $request->input('quantity');
         $item->description = $request->input('description');
+        $image = $request->file('item_image');
+        $path = '';
+        if ($request->hasFile('item_image') && $image->isValid()) {
+            $path = $image->store('items');
+        }
+        $item->image = $path;
+
         $item->save();
 //
         $item->event()->associate($event);
@@ -92,7 +101,7 @@ class ItemController extends Controller
      */
     public function edit(Item $item)
     {
-        //
+        return view('items.edit', ['item' => $item]);
     }
 
     /**
@@ -104,7 +113,29 @@ class ItemController extends Controller
      */
     public function update(Request $request, Item $item)
     {
-        //
+
+        $oldImagePath = $item->image;
+        $item = Item::find($item->id);
+        $item->name = $request->input('name');
+        $item->quantity = $request->input('quantity');
+        $item->description = $request->input('description');
+
+        $image = $request->file('item_image');
+
+        if ($request->hasFile('item_image') && $image->isValid()) {
+
+            // remove old associated image
+            if ($oldImagePath && !empty($oldImagePath)) {
+                Storage::delete($oldImagePath);
+            }
+
+            $item->image = $image->store('items');
+        }
+
+
+        $item->save();
+
+        return redirect('events/' . $item->event_id)->with('success','Item has been updated!');
     }
 
     /**
@@ -121,5 +152,16 @@ class ItemController extends Controller
     public function claimItem(Request $request)
     {
         //
+    }
+
+    public function showUpload()
+    {
+        return view('events.upload');
+
+    }
+
+    public function upload()
+    {
+
     }
 }

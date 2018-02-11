@@ -37,11 +37,15 @@
                                 <div class="col-md-4">
                                     <div class="card" style="width: 18rem; margin-top: 20px;">
                                         <div class="card-body">
+                                            @if($item->image)
+                                                <img src="{{ \Illuminate\Support\Facades\Storage::url($item->image)  }}" alt="" width="auto" height="100px"/>
+                                            @endif
                                             <h5 class="card-title">{{ $item->name }}</h5>
                                             <p class="card-text">{{ $item->description }}</p>
                                         </div>
                                         <div class="card-footer">
                                             <p class="float-left" style="margin-top: 5px;">Available {{ $item->quantity }}</p>
+                                            <a href="{{ route('items.edit', ['item' => $item]) }}" class="btn btn-primary float-right">Edit</a>
                                             <a href="#" class="btn btn-primary float-right">Claim</a>
                                         </div>
                                     </div>
@@ -75,3 +79,24 @@
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="addItemModal"
+     tabindex="-1" role="dialog"
+     aria-labelledby="addItemModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title"
+                    id="addItemModalLabel">Add Item</h4>
+                <button type="button" class="close"
+                        data-dismiss="modal"
+                        aria-label="Close">
+                    <span aria-hidden="true">&times;</span></button>
+            </div>
+            @include('items.forms.create', [
+                'submitButtonText' => 'Add'
+            ])
+        </div>
+    </div>
+</div>
+
