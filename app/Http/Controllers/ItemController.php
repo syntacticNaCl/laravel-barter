@@ -63,6 +63,7 @@ class ItemController extends Controller
         $item->name = $request->input('name');
         $item->quantity = $request->input('quantity');
         $item->description = $request->input('description');
+        $item->creator_id = $request->user()->id;
         $item->save();
 //
         $item->event()->associate($event);
