@@ -72,6 +72,7 @@ class ItemController extends Controller
         }
         $item->image = $path;
 
+        $item->creator_id = $request->user()->id;
         $item->save();
 //
         $item->event()->associate($event);

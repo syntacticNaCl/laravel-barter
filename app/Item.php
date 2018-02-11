@@ -15,4 +15,9 @@ class Item extends Model
     {
         return $this->belongsTo('App\Event');
     }
+
+    public function creator()
+    {
+        return $this->belongsTo('App\User','creator_id', 'id');
+    }
 }

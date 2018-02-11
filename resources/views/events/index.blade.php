@@ -42,6 +42,7 @@
                                             @endif
                                             <h5 class="card-title">{{ $item->name }}</h5>
                                             <p class="card-text">{{ $item->description }}</p>
+                                            <p class="card-text">{{ $item->creator->name }}</p>
                                         </div>
                                         <div class="card-footer">
                                             <p class="float-left" style="margin-top: 5px;">Available {{ $item->quantity }}</p>
