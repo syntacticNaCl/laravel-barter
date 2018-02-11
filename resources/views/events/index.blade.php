@@ -37,17 +37,25 @@
                                 <div class="col-md-4">
                                     <div class="card" style="width: 18rem; margin-top: 20px;">
                                         <div class="card-body">
-                                            @if($item->image)
-                                                <img src="{{ \Illuminate\Support\Facades\Storage::url($item->image)  }}" alt="" width="auto" height="100px"/>
-                                            @endif
+                                            <div class="item-image-wrap" style="min-height: 100px; width: auto; overflow: hidden;">
+                                                @if($item->image)
+                                                    <img src="{{ \Illuminate\Support\Facades\Storage::url($item->image)  }}" alt="{{$item->description}}" style="height: 100px; width: auto;"/>
+                                                    @else
+                                                    No image
+                                                @endif
+                                            </div>
                                             <h5 class="card-title">{{ $item->name }}</h5>
                                             <p class="card-text">{{ $item->description }}</p>
-                                            <p class="card-text">{{ $item->creator->name }}</p>
+                                                @if($item->creator)
+                                                    <p class="card-text">{{ $item->creator->name }}</p>
+                                                @endif
                                         </div>
                                         <div class="card-footer">
                                             <p class="float-left" style="margin-top: 5px;">Available {{ $item->quantity }}</p>
-                                            <a href="{{ route('items.edit', ['item' => $item]) }}" class="btn btn-primary float-right">Edit</a>
-                                            <a href="#" class="btn btn-primary float-right">Claim</a>
+                                            <div class="button-wrapper float-right">
+                                                <a href="{{ route('items.edit', ['item' => $item]) }}" class="btn btn-primary" style="position: relative; right: 0;">Edit</a>
+                                                <a href="#" class="btn btn-primary">Claim</a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
