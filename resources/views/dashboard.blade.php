@@ -30,11 +30,11 @@
                     </div>
 
                     <div class="card-body">
-                        <ul>
+                        <div class="list-group">
                             @foreach($groups as $group)
-                                <li style="list-style-type: none;"><a href="{{url('groups/' . $group->id)}}">{{ $group->name }}</a></li>
+                                <a class="list-group-item" href="{{url('groups/' . $group->id)}}">{{ $group->name }}</a>
                             @endforeach
-                        </ul>
+                        </div>
                     </div>
                 </div>
             </div>

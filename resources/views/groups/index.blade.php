@@ -31,9 +31,11 @@
 
                     <div class="card-body">
 
-                        @foreach($events as $event)
-                            <li style="list-style-type: none;"><a href="{{url('events/' . $event->id)}}">{{ $event->name }}</a></li>
-                        @endforeach
+                        <div class="list-group">
+                            @foreach($events as $event)
+                                <a class="list-group-item" href="{{url('events/' . $event->id)}}">{{ $event->name }}</a>
+                            @endforeach
+                        </div>
 
                     </div>
                 </div>

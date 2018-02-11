@@ -6,7 +6,6 @@ use App\Item;
 use App\Event;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-
 class ItemController extends Controller
 {
 
@@ -115,6 +114,11 @@ class ItemController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy(Item $item)
+    {
+        //
+    }
+
+    public function claimItem(Request $request)
     {
         //
     }

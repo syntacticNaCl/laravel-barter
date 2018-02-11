@@ -17,7 +17,7 @@
             </div>
         @endif
         <div class="row justify-content-center">
-            <div class="col-md-8">
+            <div class="col-md-12">
                 <div class="card card-default">
                     <div class="card-header">Items
                         <button
@@ -30,10 +30,24 @@
                     </div>
 
                     <div class="card-body">
+                        <div class="row">
 
-                        @foreach($items as $item)
-                            <li style="list-style-type: none;"><a href="#">{{ $item->name }}</a></li>
-                        @endforeach
+
+                            @foreach($items as $item)
+                                <div class="col-md-4">
+                                    <div class="card" style="width: 18rem; margin-top: 20px;">
+                                        <div class="card-body">
+                                            <h5 class="card-title">{{ $item->name }}</h5>
+                                            <p class="card-text">{{ $item->description }}</p>
+                                        </div>
+                                        <div class="card-footer">
+                                            <p class="float-left" style="margin-top: 5px;">Available {{ $item->quantity }}</p>
+                                            <a href="#" class="btn btn-primary float-right">Claim</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
 
                     </div>
                 </div>

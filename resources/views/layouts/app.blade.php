@@ -28,8 +28,6 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                         <li><a href="{{ route('dashboard') }}" class="nav-link">Dashboard</a></li>
-                        <li><a href="{{ route('groups.index') }}" class="nav-link">Groups</a></li>
-
                     </ul>
 
                     <!-- Right Side Of Navbar -->
