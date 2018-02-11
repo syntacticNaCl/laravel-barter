@@ -43,7 +43,9 @@
                                         </div>
                                         <div class="card-footer">
                                             <p class="float-left" style="margin-top: 5px;">Available {{ $item->quantity }}</p>
-                                            <a href="#" class="btn btn-primary float-right">Claim</a>
+                                            {{ Form::open(array('url' => 'item/' . $item->id . '/claim')) }}
+                                            <button type="submit" class="btn btn-primary float-right">Claim</button>
+                                            {{ Form::close() }}
                                         </div>
                                     </div>
                                 </div>

@@ -119,8 +119,11 @@ class ItemController extends Controller
         //
     }
 
-    public function claimItem(Request $request)
+    public function claimItem(Request $request, $id)
     {
-        //
+        $item = Item::find($id);
+        $item->claimers()->attach($request->user()->id);
+
+        return redirect('events/' . $item->id)->with('success', 'SUCCESS');
     }
 }

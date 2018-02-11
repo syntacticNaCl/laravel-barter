@@ -21,5 +21,5 @@ Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 
 Route::resource('groups', 'GroupController');
 Route::resource('items', 'ItemController');
-Route::post('item/{id}/claim', 'ItemController@claimItem');
+Route::post('item/{id}/claim', 'ItemController@claimItem')->name('items.claim');
 Route::resource('events', 'EventController');
