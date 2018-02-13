@@ -52,13 +52,21 @@
                                         <div class="card-footer">
 
                                             {{ Form::open(array('url' => 'item/' . $item->id . '/claim')) }}
-                                            {{--<p class="float-left" style="margin-top: 5px;">Available {{ $item->isAvailable()}}</p>--}}
-                                            <p class="float-left" style="margin-top: 5px;">{{ $item->availableCount() }} Left</p>
-                                            <div class="button-wrapper float-right">
-                                            @if($item->isAvailable())
-                                            <button type="submit" class="btn btn-primary float-right">Claim</button>
+                                            @if($item->availableCount())
+                                                <p class="float-left"
+                                                   style="margin-top: 5px;">{{ $item->availableCount() }}
+                                                    Left</p>
+                                            @else
+                                                <p class="float-left" style="margin-top: 5px;">Unavailable</p>
                                             @endif
-                                                <a href="{{ route('items.edit', ['item' => $item]) }}" class="btn btn-primary" style="position: relative; right: 0;">Edit</a>
+
+                                            <div class="button-wrapper float-right">
+                                                @if($item->isAvailable())
+                                                    <button type="submit" class="btn btn-primary">Claim</button>
+                                                @endif
+                                                <a href="{{ route('items.edit', ['item' => $item]) }}"
+                                                   class="btn btn-primary"
+                                                   style="position: relative; right: 0;">Edit</a>
                                             </div>
                                             {{ Form::close() }}
 
